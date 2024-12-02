@@ -9,6 +9,8 @@ enum Route {
     Home {},
     #[route("/blog/:id")]
     Blog { id: i32 },
+    #[route("/:..route")]
+    NotFound { route: Vec<String> },
 }
 
 fn main() {
@@ -55,6 +57,20 @@ fn Home() -> Element {
             button {
                 class: "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
                 onclick: move |_| count -= 1, "Down low!" }
+        }
+    }
+}
+
+#[component]
+fn NotFound(route: Vec<String>) -> Element {
+    let path = route.join("/");
+    rsx! {
+        div {
+            class: "flex flex-col items-center justify-center h-screen",
+            h1 {
+                class:"text-3xl p-4",
+                "Not Found: The page `/{path}` you requested is missing"
+            }
         }
     }
 }
