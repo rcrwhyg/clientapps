@@ -4,20 +4,14 @@
   "version": "0.1.0",
   "identifier": "com.hackernews.app",
   "build": {
-    "beforeDevCommand": "cd hackernews && dx serve --port 8081 --hot-reload true",
+    "beforeDevCommand": "dx serve --port 8081 --hot-reload true",
     "devUrl": "http://localhost:8081",
-    "beforeBuildCommand": "cd hackernews && dx build --release",
+    "beforeBuildCommand": "dx build --release",
     "frontendDist": "../target/dx"
   },
   "app": {
     "withGlobalTauri": true,
-    "windows": [
-      {
-        "title": "hackernews",
-        "width": 1200,
-        "height": 800
-      }
-    ],
+    "windows": [],
     "security": {
       "csp": null
     }
